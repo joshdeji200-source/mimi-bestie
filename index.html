@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bestie Forever 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(135deg,#000,#ff4da6,#000),
+    radial-gradient(circle at top left,#ff69b4,#000);
+  background-blend-mode:screen;
+  color:white;
+  font-family:Arial, sans-serif;
+  overflow:hidden;
+  transition:background 0.5s;
+}
+
+.container{
+  text-align:center;
+  z-index:2;
+}
+
+h1{
+  font-size:3em;
+  font-weight:900;
+  text-shadow:0 0 20px hotpink;
+  margin-bottom:30px;
+}
+
+.buttons button{
+  font-size:20px;
+  padding:15px 30px;
+  margin:10px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+#yes{background:#00ff99;}
+#maybe{background:#ffd966;}
+#no{background:#ff4d4d;}
+
+.heart{
+  position:fixed;
+  font-size:32px;
+  animation:float 3s linear forwards;
+}
+
+@keyframes float{
+  from{transform:translateY(0); opacity:1;}
+  to{transform:translateY(-100vh); opacity:0;}
+}
+
+img{
+  max-width:260px;
+  display:none;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Will you be my bestie for life, Mimi? 💕</h1>
+
+  <div class="buttons">
+    <button id="yes" onclick="yes()">YES</button>
+    <button id="maybe" onclick="maybe()">MAYBE</button>
+    <button id="no" onclick="nope()">NO</button>
+  </div>
+
+  <img id="finalImg" src="final.png">
+</div>
+
+<script>
+let yesSize = 1;
+
+function nope(){
+  document.body.style.background = "red";
+  yesSize *= 3;
+  document.getElementById("yes").style.transform = "scale("+yesSize+")";
+}
+
+function maybe(){
+  document.getElementById("maybe").style.display = "none";
+}
+
+function yes(){
+  document.body.style.background = "green";
+  document.getElementById("finalImg").style.display = "block";
+
+  for(let i=0;i<500;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML=["💖","💘","💝","💗","💓"][Math.floor(Math.random()*5)];
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.bottom="0";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),3000);
+  }
+}
+</script>
+</body>
+</html>
