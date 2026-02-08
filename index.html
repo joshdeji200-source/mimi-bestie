@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bestie Forever 💖</title>
+<title>Forever 💕</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,101 +10,104 @@ body{
   margin:0;
   height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:
-    linear-gradient(135deg,#000,#ff4da6,#000),
-    radial-gradient(circle at top left,#ff69b4,#000);
-  background-blend-mode:screen;
+  align-items:center;
+  background:linear-gradient(135deg,#000,#ff5fa2,#000);
   color:white;
   font-family:Arial, sans-serif;
+  text-align:center;
   overflow:hidden;
-  transition:background 0.5s;
+  transition:background 1s;
 }
 
 .container{
-  text-align:center;
-  z-index:2;
+  max-width:90%;
 }
 
 h1{
-  font-size:3em;
+  font-size:2.5em;
   font-weight:900;
-  text-shadow:0 0 20px hotpink;
-  margin-bottom:30px;
+  text-shadow:0 0 20px pink;
 }
 
-.buttons button{
-  font-size:20px;
-  padding:15px 30px;
-  margin:10px;
+p{
+  font-size:1.1em;
+  line-height:1.6;
+}
+
+button{
+  margin-top:30px;
+  padding:18px 35px;
+  font-size:18px;
   border:none;
-  border-radius:12px;
+  border-radius:30px;
   cursor:pointer;
   font-weight:bold;
+  background:#ff4da6;
+  color:white;
 }
-
-#yes{background:#00ff99;}
-#maybe{background:#ffd966;}
-#no{background:#ff4d4d;}
 
 .heart{
   position:fixed;
-  font-size:32px;
-  animation:float 3s linear forwards;
+  font-size:28px;
+  animation:float 4s linear forwards;
 }
 
 @keyframes float{
-  from{transform:translateY(0); opacity:1;}
-  to{transform:translateY(-100vh); opacity:0;}
+  from{opacity:1; transform:translateY(0);}
+  to{opacity:0; transform:translateY(-100vh);}
 }
 
-img{
-  max-width:260px;
-  display:none;
+.forever{
+  font-size:3em;
+  font-weight:900;
   margin-top:20px;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-  <h1>Will you be my bestie for life, Mimi? 💕</h1>
-
-  <div class="buttons">
-    <button id="yes" onclick="yes()">YES</button>
-    <button id="maybe" onclick="maybe()">MAYBE</button>
-    <button id="no" onclick="nope()">NO</button>
-  </div>
-
-  <img id="finalImg" src="final.png">
+<div class="container" id="app">
+  <h1>How long will you stay here?</h1>
+  <button onclick="correct()">10 SECONDS</button>
+  <button onclick="correct()">1 MINUTE</button>
+  <button onclick="correct()">FOREVER</button>
 </div>
 
 <script>
-let yesSize = 1;
+function correct(){
+  document.getElementById("app").innerHTML =
+    "<h1>Correct answer 💕<br>FOREVER</h1>";
 
-function nope(){
-  document.body.style.background = "red";
-  yesSize *= 3;
-  document.getElementById("yes").style.transform = "scale("+yesSize+")";
+  setTimeout(fingerprint, 2000);
 }
 
-function maybe(){
-  document.getElementById("maybe").style.display = "none";
+function fingerprint(){
+  document.body.style.background = "linear-gradient(135deg,#000,#000,#333)";
+  document.getElementById("app").innerHTML =
+    "<h1>Thumb print on this button 🤍</h1>" +
+    "<button onclick='finalPage()'>PLACE THUMBPRINT</button>";
 }
 
-function yes(){
-  document.body.style.background = "green";
-  document.getElementById("finalImg").style.display = "block";
+function finalPage(){
+  document.body.style.background = "linear-gradient(135deg,#0f5132,#4ade80)";
+  document.getElementById("app").innerHTML =
+    "<h1>Dear Mimi 🤍</h1>" +
+    "<p>I don’t say this enough, but having you in my life means more to me than words can explain. " +
+    "You bring comfort, laughter, and warmth just by being you. No matter where life takes us, " +
+    "I want you to know you will always have a place with me.</p>" +
+    "<p>Thank you for choosing me, for staying, and for being exactly who you are.</p>" +
+    "<p><strong>You have successfully become my full-time bestie</strong></p>" +
+    "<div class='forever'>FOREVER 💖</div>";
 
-  for(let i=0;i<500;i++){
+  for(let i=0;i<200;i++){
     let heart=document.createElement("div");
     heart.className="heart";
-    heart.innerHTML=["💖","💘","💝","💗","💓"][Math.floor(Math.random()*5)];
+    heart.innerHTML="💖";
     heart.style.left=Math.random()*100+"vw";
     heart.style.bottom="0";
     document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),3000);
+    setTimeout(()=>heart.remove(),4000);
   }
 }
 </script>
